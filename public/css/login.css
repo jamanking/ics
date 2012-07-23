@@ -1,0 +1,35 @@
+
+body{
+
+	background-image : url('../img/loginBackground/loginPagebg.jpg');
+}
+div#loginForm{
+	display:-moz-box;
+	display:-webkit-box;
+	-moz-box-align:center;
+	-webkit-box-align:center;
+	-moz-box-pack:center;
+	-webkit-box-pack:center;
+	position :absolute;
+	top :200px;
+	left : 300px;
+	padding : 20px;
+	border : solid 10px ;
+	border-radius : 40px 20px;
+	-moz-border-radius:40px 20px;
+	-o-border-radius:40px 20px;
+	-webkit-border-radius:40px 20px;
+	width : 400px;
+	background-image : url('../img/loginBackground/loginFormbg.jpg');
+	
+}
+div[id='tip']{
+	color : red;
+	display:-moz-box;
+	display:-webkit-box;
+	-moz-box-align:right;
+	-webkit-box-align:right;
+	position :absolute;
+	top :150px;
+	left : 250px;
+}

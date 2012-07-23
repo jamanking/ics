@@ -1,0 +1,121 @@
+
+<link href="<?php echo $this->baseUrl();?>/public/css/site.css" rel="stylesheet" type="text/css"/>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/jquery-1.7.2.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/utilities.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/canvasElement.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/canvasImg.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.ui.core.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.ui.widget.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.ui.mouse.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.ui.draggable.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.ui.button.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.effects.core.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.effects.explode.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.effects.bounce.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.effects.pulsate.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.effects.clip.js" type="text/javascript" charset="utf-8"></script>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/ui/jquery.effects.scale.js" type="text/javascript" charset="utf-8"></script>
+
+
+</head>
+<body>
+	<header id="webTitle">
+		<section id="sectionTop1">
+			<div id="TopLeft" >logo</div>
+			<div id="TopRight" >title</div>
+			<div id="UserInfo" >
+				<?php echo '你好,'.$this->escape($this->userName);?>
+				<a href="<?php echo $this->url(array('controller'=>'index','action'=>'logout'));?>">退出</a>
+			
+			</div>
+		</section>
+		<nav>
+			<ul id="topNavUrl">
+				<li id = "scanMode"onclick="onScanMode()">查询模式</li>
+				<li id="maintainMode"onclick="onMaintainMode()">指令模式</li>
+				<li id = "projectMode"onclick="onProjectMode()">工程模式</li>
+			</ul>
+			<form id='queryForm' method='post' action=''><input type='search' id="queryText" name='queryText' placeholder='查询内容' required><input type='submit' value='查询一' name='0' required><input type='submit' value='查询二' name='1'></form>
+			<input type='button' id='canvasReturn' value='返回' onclick="backClick()">
+		</nav>
+	</header>
+	<section id="mainFrame">
+		
+		<aside id="leftMenu"  >	
+		<nav id='leftMenuNav'>
+		
+	
+		<details>
+				<summary id='index'>导航</summary>
+					<ul id="buildingList">
+					<!-- 添加大楼树形菜单 -->
+						<?php foreach ($this->buildings as $building):?>
+							<li>
+								<details>
+									<summary id='building_<?php echo $building['BUILDING_ID']?>'><?php echo $building['BUILDING_NAME']?></summary>
+										<ul>
+											<!-- 添加楼层 树形-->
+											<?php  foreach ($this->floors as $floor):?>
+												<!-- 如果楼层属于这栋楼 -->
+												<?php if($floor['BUILDING_ID'] == $building['BUILDING_ID']):?>
+												<li>
+													<details>
+														<summary id='floor_<?php echo $floor['FLOOR_ID']?>'><?php echo $floor['FLOOR_NAME']?></summary>
+														<ul>
+															<!-- 显示楼层中的房间 -->
+															<?php foreach ($this->rooms as $room):?>
+																<?php if($room['FLOOR_ID'] == $floor['FLOOR_ID']) :?>
+																	<li id='room_<?php echo $room["ROOM_ID"]?>_<?php echo $room['ROOM_TYPE']?>'><?php echo $room["ROOM_NAME"]?></li>
+																<?php endif;?>
+															<?php endforeach;?>
+														</ul>
+													</details>
+												</li>
+												<?php endif;?>
+											<?php endforeach;?>
+										</ul>
+								</details>
+							</li>
+		
+						<?php endforeach;?>
+					
+					</ul>
+			</details> 
+		
+			</nav>
+		</aside>
+			
+	    <div id="leftHide" style="width : 10px"><img id="hide" src="<?php echo $this->baseUrl()?>/public/img/hideLeftMenu.jpg" title="点击隐藏左边栏"alt="click to hide leftMenu">
+	    <img id="show" src="<?php echo $this->baseUrl()?>/public/img/showLeftMenu.jpg" title="点击显示左边栏"alt="click to hide leftMenu">
+	    </div>
+		
+		<div id="canvasContainer" >
+		
+		</div>
+	</section>
+	
+	<footer id='webfooter' >
+		<address>
+			<ul id="footerUrl">
+				<li>版权</li>
+				<li>联系我们</li>
+			</ul>
+		</address>
+	</footer>
+		
+	<div id="container">
+	<div id="header">
+	</div>
+	
+	<div id="managebutton">
+	<img src="<?php echo $this->baseUrl()?>/public/img/button.png" width="184" height="32" class="menu_class" />
+	<ul class="the_menu">
+	<li id='rightMenu_browse'><a href="#">查看</a></li>
+	<li id='rightMenu_manage'><a href="#">调整</a></li>
+	
+	</ul>
+	</div>
+	
+	</div>
+
+</body>

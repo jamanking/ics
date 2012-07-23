@@ -1,0 +1,15 @@
+<link href="<?php echo $this->baseUrl();?>/public/css/login.css" rel="stylesheet" type="text/css"/>
+<script src="<?php echo $this->baseUrl();?>/public/javascript/login.js"  type="text/javascript"></script>
+</head>
+<body>
+<div id='loginForm'>
+	<?php echo $this->loginForm;?>
+<div id='tip'><?php  echo $this->escape($this->tips); ?></div>
+		<span ><?php echo '<pre>';$this->tt;print_r($this->info); ?></span>
+</div>	
+
+
+<form id="uploadImage" action="<?php echo $this->url(array('controller'=>'changebackground','action'=>'change'))?>" enctype="multipart/form-data" method="post">
+<input type="file" id="img" name="img" onchange="imgUpload()"/>
+<input id="uploadBtn" type="button" value="更改背景" />
+</form>

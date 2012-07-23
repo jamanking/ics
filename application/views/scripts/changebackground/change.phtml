@@ -1,0 +1,6 @@
+</head>
+<body>
+
+<?php echo $this->fileName; echo $this->fileType;?>
+<?php if($this->tips) echo $this->escape($this->tips);?>
+<a href="<?php echo $this->baseUrl(array("controller"=>"index"));?>">返回</a>

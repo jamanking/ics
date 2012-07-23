@@ -1,0 +1,17 @@
+<?php if(!$this->ajax) :?>
+<?php //ajax通信不需要html信息，仅传输json格式数据  ?>
+<!DOCTYPE html>
+<html >
+<head>
+  <meta charset="UTF-8"/>
+  <title><?php echo $this->escape($this->title);?></title>
+<?php endif;?>
+<?php echo $this->layout()->content;?>
+	
+	
+
+<?php if(!$this->ajax) :?>
+
+</body>
+</html>
+<?php endif;?>
